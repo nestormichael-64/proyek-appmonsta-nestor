@@ -1,0 +1,630 @@
+{
+	"info": {
+		"_postman_id": "1a418a26-b831-4ff3-b6ee-fed3b160edd5",
+		"name": "PROYEK_MING",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "[MT - 1] Add Post",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "aa787252-b719-456c-8616-2a3730777aaa",
+						"exec": [
+							"let queue = pm.environment.get(\"post_post\");\r",
+							"\r",
+							"if(!queue || queue.length <=0){\r",
+							"    queue = [\r",
+							"        {\r",
+							"            \"post_data_apikey\" : \"ijnJDNkjALKD2321dKMLWL@KDM1d21dLWKMDLd12d12dKLMWDL\",\r",
+							"            \"post_data_id_app\" : \"GLE32454\",\r",
+							"            \"post_data_judul\" : \"Game Favorit 2020\",\r",
+							"            \"post_data_caption\" : \"Jangan lupa like jika anda setuju dengan list yang ada!\",\r",
+							"            \"post_data_status_code\" : 200,\r",
+							"            \"post_data_body\" : {\r",
+							"               \"status\"  : \"Berhasil Post\",\r",
+							"               \"error\" : \"\"\r",
+							"            }\r",
+							"        },\r",
+							"        {\r",
+							"            \"post_data_apikey\" : \"\",\r",
+							"            \"post_data_id_app\" : \"GLE322354\",\r",
+							"            \"post_data_judul\" : \"Game Favorit 2020\",\r",
+							"            \"post_data_caption\" : \"Jangan lupa like jika anda setuju dengan list yang ada!\",\r",
+							"            \"post_data_status_code\" : 400,\r",
+							"            \"post_data_body\" : {\r",
+							"               \"status\"  : \"Gagal Post\",\r",
+							"               \"error\" : \"Api key yang dimasukan tidak valid\"\r",
+							"            }\r",
+							"        },\r",
+							"        {\r",
+							"            \"post_data_apikey\" : \"\",\r",
+							"            \"post_data_id_app\" : \"\",\r",
+							"            \"post_data_judul\" : \"\",\r",
+							"            \"post_data_caption\" : \"\",\r",
+							"            \"post_data_status_code\" : 400,\r",
+							"            \"post_data_body\" : {\r",
+							"               \"status\"  : \"Gagal Post\",\r",
+							"               \"error\" : \"Pastikan semua field terisi\"\r",
+							"            }\r",
+							"        }\r",
+							"    ];\r",
+							"}\r",
+							"\r",
+							"let currentData = queue.shift();\r",
+							"pm.environment.set(\"post_data_apikey\", currentData[\"post_data_apikey\"]);\r",
+							"pm.environment.set(\"post_data_id_app\", currentData[\"post_data_id_app\"]);\r",
+							"pm.environment.set(\"post_data_judul\", currentData[\"post_data_judul\"]);\r",
+							"pm.environment.set(\"post_data_caption\", currentData[\"post_data_caption\"]);\r",
+							"pm.environment.set(\"post_data_status_code\", currentData[\"post_data_status_code\"]);\r",
+							"pm.environment.set(\"post_data_body\", currentData[\"post_data_body\"]);\r",
+							"pm.environment.set(\"post_post\", queue);"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "18ceab29-31b8-4607-8243-611ebbd3919b",
+						"exec": [
+							"let queue = pm.environment.get(\"post_post\");\r",
+							"\r",
+							"if(!queue || queue.length <= 0){\r",
+							"    //postman.setNextRequest(\"Get Place\");\r",
+							"}\r",
+							"else{\r",
+							"    postman.setNextRequest(\"add post\");\r",
+							"}\r",
+							"\r",
+							"pm.test(\"Status code is correct\", function () {\r",
+							"    pm.response.to.have.status(pm.environment.get(\"post_data_status_code\"));\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Data is correct\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.eql(pm.environment.get(\"post_data_body\"));\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-auth-key",
+						"type": "text",
+						"value": "{{post_data_apikey}}"
+					},
+					{
+						"key": "",
+						"type": "text",
+						"value": "",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "id_app",
+							"value": "{{post_data_id_app}}",
+							"type": "text"
+						},
+						{
+							"key": "judul",
+							"value": "{{post_data_judul}}",
+							"type": "text"
+						},
+						{
+							"key": "caption",
+							"value": "{{post_data_caption}}",
+							"type": "text"
+						},
+						{
+							"key": "",
+							"value": "",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:3000/post",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"post"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[MT - 2] View Post",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "b81cbdee-3555-41c9-be27-ed1809cbd296",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "46d4b888-35a8-43b5-a1f3-f246f627c3a8",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"const schema = {\r",
+							"    \"post\": {\r",
+							"        \"id_post\": \"int\",\r",
+							"        \"id_user\": \"int\",\r",
+							"\t\t\"id_app\" : \"string\",\r",
+							"\t\t\"judul_post\" : \"string\",\r",
+							"\t\t\"caption_post\" : \"string\",\r",
+							"\t\t\"total_review\" : \"int\",\r",
+							"\t\t\"total_like\" : \"int\",\r",
+							"\t\t\"total_dislike\" : \"int\"\r",
+							"\t}\r",
+							"};\r",
+							"\r",
+							"pm.test('Schema is valid', function() {\r",
+							"  pm.expect(tv4.validate(pm.response.json(), schema)).to.be.true;\r",
+							"});\r",
+							"\r",
+							"tests[\"Data response lebih dari 0\"] = pm.response.json().length > 0;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:3000/post?search=game horror 2020&id_app=GL233&date=23/20/2020",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"post"
+					],
+					"query": [
+						{
+							"key": "search",
+							"value": "game horror 2020"
+						},
+						{
+							"key": "id_app",
+							"value": "GL233"
+						},
+						{
+							"key": "date",
+							"value": "23/20/2020"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[MT - 3] Delete Post",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "657ac796-f192-4ba5-ba1c-1adf91e590c3",
+						"exec": [
+							"data = pm.environment.get(\"delete_post\");",
+							"",
+							"pm.sendRequest({",
+							"    url: \"localhost:3000/login\",",
+							"    method: \"post\",",
+							"    body: {",
+							"        mode: \"urlencoded\",",
+							"        encoded: [{key:\"jenis_user\", value:\"premium\", disabled:false}]",
+							"    }",
+							"}, function (err, response) {",
+							"    pm.environment.set(\"delete_data_apikey\", response.text());",
+							"});",
+							"",
+							"pm.environment.set(\"delete_data_id_post\", \"3\");"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "fe8f6e16-d575-42ac-afe7-d2b9ec427750",
+						"exec": [
+							"pm.test(\"Status code is correct\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Return data is correct\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.eql({",
+							"        \"status\":\"Berhasil Delete\",",
+							"        \"error\":\"\"",
+							"    });",
+							"});",
+							"",
+							"pm.environment.set(\"delete_data_id_post\", \"3\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "x-auth-key",
+						"value": "{{delete_data_apikey}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:3000/post",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"post"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[MT - 4] Update Post",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "e3c7bcaf-848e-4533-9107-5c315e26f07f",
+						"exec": [
+							"let queue = pm.environment.get(\"update_post\");\r",
+							"\r",
+							"if(!queue || queue.length <=0){\r",
+							"    queue = [\r",
+							"        {\r",
+							"            \"update_data_apikey\" : \"ijnJDNkjALKD2321dKMLWL@KDM1d21dLWKMDLd12d12dKLMWDL\",\r",
+							"            \"update_data_id_post\" : 3,\r",
+							"            \"update_data_judul\" : \"Game Underated 2020\",\r",
+							"            \"update_data_caption\" : \"Maaf atas kesalahan rank pada post sebelumnya!\",\r",
+							"            \"update_data_status_code\" : 200,\r",
+							"            \"update_data_body\" : {\r",
+							"               \"status\"  : \"Berhasil Update\",\r",
+							"               \"error\" : \"\"\r",
+							"            }\r",
+							"        },\r",
+							"        {\r",
+							"            \"update_data_apikey\" : \"\",\r",
+							"            \"update_data_id_post\" : 3,\r",
+							"            \"update_data_judul\" : \"Game Underated 2020\",\r",
+							"            \"update_data_caption\" : \"Maaf atas kesalahan rank pada post sebelumnya!\",\r",
+							"            \"update_data_status_code\" : 400,\r",
+							"            \"update_data_body\" : {\r",
+							"               \"status\"  : \"Gagal Update\",\r",
+							"               \"error\" : \"Api Key yang disertakan tidak valid\"\r",
+							"            }\r",
+							"        },\r",
+							"        {\r",
+							"            \"update_data_apikey\" : \"\",\r",
+							"            \"update_data_id_post\" : 201,\r",
+							"            \"update_data_judul\" : \"Game Underated 2020\",\r",
+							"            \"update_data_caption\" : \"Maaf atas kesalahan rank pada post sebelumnya!\",\r",
+							"            \"update_data_status_code\" : 404,\r",
+							"            \"update_data_body\" : {\r",
+							"               \"status\"  : \"Gagal Update\",\r",
+							"               \"error\" : \"ID Post tidak ditemukan!\"\r",
+							"            }\r",
+							"        },\r",
+							"        {\r",
+							"            \"update_data_apikey\" : \"\",\r",
+							"            \"update_data_id_post\" : 3,\r",
+							"            \"update_data_judul\" : \"\",\r",
+							"            \"update_data_caption\" : \"\",\r",
+							"            \"update_data_status_code\" : 400,\r",
+							"            \"update_data_body\" : {\r",
+							"               \"status\"  : \"Gagal Update\",\r",
+							"               \"error\" : \"pastikan semua field terisi\"\r",
+							"            }\r",
+							"        },\r",
+							"    ];\r",
+							"}\r",
+							"\r",
+							"let currentData = queue.shift();\r",
+							"pm.environment.set(\"update_data_apikey\", currentData[\"update_data_apikey\"]);\r",
+							"pm.environment.set(\"update_data_id_post\", currentData[\"update_data_id_post\"]);\r",
+							"pm.environment.set(\"update_data_judul\", currentData[\"update_data_judul\"]);\r",
+							"pm.environment.set(\"update_data_caption\", currentData[\"update_data_caption\"]);\r",
+							"pm.environment.set(\"update_data_status_code\", currentData[\"update_data_status_code\"]);\r",
+							"pm.environment.set(\"update_data_body\", currentData[\"update_data_body\"]);\r",
+							"pm.environment.set(\"update_post\", queue);"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "6e7941e2-f169-4bbc-bfda-88dc6ac81801",
+						"exec": [
+							"let queue = pm.environment.get(\"update_post\");\r",
+							"\r",
+							"if(!queue || queue.length <= 0){\r",
+							"    //postman.setNextRequest(\"Get Place\");\r",
+							"}\r",
+							"else{\r",
+							"    postman.setNextRequest(\"update post\");\r",
+							"}\r",
+							"\r",
+							"pm.test(\"Status code is correct\", function () {\r",
+							"    pm.response.to.have.status(pm.environment.get(\"update_data_status_code\"));\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Data is correct\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.eql(pm.environment.get(\"update_data_body\"));\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "x-auth-key",
+						"value": "{{post_data_apikey}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "id_post",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "caption_post",
+							"value": "{{post_data_caption}}",
+							"type": "text"
+						},
+						{
+							"key": "judul_post",
+							"value": "{{post_data_judul}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:3000/post",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"post"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[MT - 5] Review Post",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "d1e2153d-c757-4f08-9502-58055da8f144",
+						"exec": [
+							"let queue = pm.environment.get(\"post_review\");\r",
+							"\r",
+							"if(!queue || queue.length <=0){\r",
+							"    queue = [\r",
+							"        {\r",
+							"            \"post_data_apikey\" : \"ijnJDNkjALKD2321dKMLWL@KDM1d21dLWKMDLd12d12dKLMWDL\",\r",
+							"            \"post_data_id_post\" : 3,\r",
+							"            \"post_data_review\" : \"Wow tidak nyangka nomor 1 game itu!\",\r",
+							"            \"post_data_status_code\" : 200,\r",
+							"            \"post_data_body\" : {\r",
+							"               \"status\"  : \"Berhasil review\",\r",
+							"               \"error\" : \"\"\r",
+							"            }\r",
+							"        },\r",
+							"        {\r",
+							"            \"post_data_apikey\" : \"\",\r",
+							"            \"post_data_id_post\" : 3,\r",
+							"            \"post_data_review\" : \"Wow tidak nyangka nomor 1 game itu!\",\r",
+							"            \"post_data_status_code\" : 400,\r",
+							"            \"post_data_body\" : {\r",
+							"               \"status\"  : \"Gagal Review\",\r",
+							"               \"error\" : \"Api Key yang disertakan tidak valid\"\r",
+							"            }\r",
+							"        },\r",
+							"        {\r",
+							"            \"post_data_apikey\" : \"ijnJDNkjALKD2321dKMLWL@KDM1d21dLWKMDLd12d12dKLMWDL\",\r",
+							"            \"post_data_id_post\" : 51,\r",
+							"            \"post_data_review\" : \"Wow tidak nyangka nomor 1 game itu!\",\r",
+							"            \"post_data_status_code\" : 404,\r",
+							"            \"post_data_body\" : {\r",
+							"               \"status\"  : \"Gagal Review\",\r",
+							"               \"error\" : \"ID Post tidak ditemukan\"\r",
+							"            }\r",
+							"        },\r",
+							"        {\r",
+							"            \"post_data_apikey\" : \"ijnJDNkjALKD2321dKMLWL@KDM1d21dLWKMDLd12d12dKLMWDL\",\r",
+							"            \"post_data_id_post\" : 51,\r",
+							"            \"post_data_review\" : \"\",\r",
+							"            \"post_data_status_code\" : 400,\r",
+							"            \"post_data_body\" : {\r",
+							"               \"status\"  : \"Gagal Review\",\r",
+							"               \"error\" : \"Pastikan isi review terisi\"\r",
+							"            }\r",
+							"        }\r",
+							"    ];\r",
+							"}\r",
+							"\r",
+							"let currentData = queue.shift();\r",
+							"pm.environment.set(\"post_data_apikey\", currentData[\"post_data_apikey\"]);\r",
+							"pm.environment.set(\"post_data_id_post\", currentData[\"post_data_id_post\"]);\r",
+							"pm.environment.set(\"post_data_review\", currentData[\"post_data_review\"]);\r",
+							"pm.environment.set(\"post_data_status_code\", currentData[\"post_data_status_code\"]);\r",
+							"pm.environment.set(\"post_data_body\", currentData[\"post_data_body\"]);\r",
+							"pm.environment.set(\"post_post\", queue);"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "c65148f7-d3f9-4353-8d44-729b9228a1ed",
+						"exec": [
+							"let queue = pm.environment.get(\"post_review\");\r",
+							"\r",
+							"if(!queue || queue.length <= 0){\r",
+							"    //postman.setNextRequest(\"Get Place\");\r",
+							"}\r",
+							"else{\r",
+							"    postman.setNextRequest(\"add post\");\r",
+							"}\r",
+							"\r",
+							"pm.test(\"Status code is correct\", function () {\r",
+							"    pm.response.to.have.status(pm.environment.get(\"post_data_status_code\"));\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Data is correct\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.eql(pm.environment.get(\"post_data_body\"));\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-auth-key",
+						"value": "{{post_data_apikey}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "id_post",
+							"value": "{{post_data_id_post}}",
+							"type": "text"
+						},
+						{
+							"key": "review",
+							"value": "{{post_data_id_review}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:3000/review_post",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"review_post"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[MT - 6] My Post",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "c2fe71ef-f36c-413b-834b-40d8f7ea4dbc",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"const schema = {\r",
+							"    \"post\": {\r",
+							"        \"id_post\": \"int\",\r",
+							"        \"id_user\": \"int\",\r",
+							"\t\t\"id_app\" : \"string\",\r",
+							"\t\t\"judul_post\" : \"string\",\r",
+							"\t\t\"caption_post\" : \"string\",\r",
+							"\t\t\"total_review\" : \"int\",\r",
+							"\t\t\"total_like\" : \"int\",\r",
+							"\t\t\"total_dislike\" : \"int\"\r",
+							"\t}\r",
+							"};\r",
+							"\r",
+							"pm.test('Schema is valid', function() {\r",
+							"  pm.expect(tv4.validate(pm.response.json(), schema)).to.be.true;\r",
+							"});\r",
+							"\r",
+							"tests[\"Data response lebih dari 0\"] = pm.response.json().length > 0;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-auth-key",
+						"value": "{{post_data_apikey}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:3000/my_post",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"my_post"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

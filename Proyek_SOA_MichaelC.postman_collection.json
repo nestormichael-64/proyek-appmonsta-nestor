@@ -1,0 +1,308 @@
+{
+	"info": {
+		"_postman_id": "8fe2a8a5-4d1e-404e-b320-197489cc3bc4",
+		"name": "Proyek_SOA_MichaelC",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Login/Register",
+			"item": [
+				{
+					"name": "localhost:3000/api/mc/register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\" : \"mike\",\n\t\"password\" : \"123\",\n\t\"email\" : \"mike@mail.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/mc/register",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"mc",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:3000/api/mc/login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\" : \"mike@mail.com\",\n\t\"password\" : \"123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/mc/login",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"mc",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Profile",
+			"item": [
+				{
+					"name": "localhost:3000/api/mc/update_profile",
+					"request": {
+						"auth": {
+							"type": "bearer"
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBvcG8uY29tIiwibGV2ZWwiOjEsImlhdCI6MTU5MDQzODEzNSwiZXhwIjoxNTkwNDQxNzM1fQ.OfwWugxzqLEV2SgnaZubYdO0Y0SrVAoztWLMuG8gDow",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "username",
+									"value": "mik",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "321",
+									"type": "text"
+								},
+								{
+									"key": "profile_picture",
+									"type": "file",
+									"src": "/C:/Users/michael/Pictures/30990-cddvd-hatsune-miku-magical-mirai-2019-official-album-limited-edition.jpg"
+								},
+								{
+									"key": "",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3000/api/mc/update_profile",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"mc",
+								"update_profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:3000/api/mc/upgrade_premium",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBvcG8uY29tIiwibGV2ZWwiOjEsImlhdCI6MTU5MDQ4NTUwMSwiZXhwIjoxNTkwNDg5MTAxfQ.7X5jWnoNQhG-UJSJcvVWHi1vZ0EQSWIWA3_K5GbJB7w",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"credit_card_number\" : \"4242424242424242\",\n\t\"expired_month\" : \"5\",\n\t\"expired_year\"  : \"2021\",\n\t\"cvc\" : \"314\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/mc/upgrade_premium",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"mc",
+								"upgrade_premium"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Voting",
+			"item": [
+				{
+					"name": "making vote",
+					"item": [
+						{
+							"name": "localhost:3000/api/mc/make_vote?id_app=com.hazelfunstudio.icecream.donut.maker,com.fungameco.klondike.solitaire",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1pa2UuY29tIiwibGV2ZWwiOjEsImlhdCI6MTU5MDc0NjYwMSwiZXhwIjoxNTkwNzUwMjAxfQ.mkmPPQyBIjeQLoO-60GiliYHgsaGUnlh9WWmwae-lls",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"judul_vote\" : \"Anime greatest hits\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/api/mc/make_vote?id_app=com.hazelfunstudio.icecream.donut.maker,com.fungameco.klondike.solitaire",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"mc",
+										"make_vote"
+									],
+									"query": [
+										{
+											"key": "id_app",
+											"value": "com.hazelfunstudio.icecream.donut.maker,com.fungameco.klondike.solitaire"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Input_vote",
+					"item": [
+						{
+							"name": "localhost:3000/api/mc/input_vote",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBvcG8uY29tIiwibGV2ZWwiOjEsImlhdCI6MTU5MDc1NTcyMCwiZXhwIjoxNTkwNzU5MzIwfQ.C1VsH6BnWVLkxsd0iDVr9vvZAjBnEahzV3_TH4g0-RY",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"id_list_vote\" : 18,\n\t\"indeks_pilihan_vote\" : 2\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/api/mc/input_vote",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"mc",
+										"input_vote"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "get_ranking_vote",
+					"item": [
+						{
+							"name": "localhost:3000/api/mc/get_ranking_vote",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"id_list_vote\" : 18\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/api/mc/get_ranking_vote",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"mc",
+										"get_ranking_vote"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

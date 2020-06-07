@@ -1,0 +1,611 @@
+{
+	"info": {
+		"_postman_id": "3d672201-c75c-4e49-b479-c8bd29978c56",
+		"name": "appmonsta",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "App IDs for all apps",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "x",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "cd05e6b97afc4f78bfc9bfa4d74a95b17df13b7c",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": []
+				},
+				"url": {
+					"raw": "https://api.appmonsta.com/v1/stores/android/ids",
+					"protocol": "https",
+					"host": [
+						"api",
+						"appmonsta",
+						"com"
+					],
+					"path": [
+						"v1",
+						"stores",
+						"android",
+						"ids"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Details for a single app",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "x",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "cd05e6b97afc4f78bfc9bfa4d74a95b17df13b7c",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.appmonsta.com/v1/stores/android/details/com.interpo0l.roadstar.json?country=US",
+					"protocol": "https",
+					"host": [
+						"api",
+						"appmonsta",
+						"com"
+					],
+					"path": [
+						"v1",
+						"stores",
+						"android",
+						"details",
+						"com.interpo0l.roadstar.json"
+					],
+					"query": [
+						{
+							"key": "country",
+							"value": "US"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Details for all apps",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "x",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "cd05e6b97afc4f78bfc9bfa4d74a95b17df13b7c",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.appmonsta.com/v1/stores/android/details.json?date=2020-06-01&country=US",
+					"protocol": "https",
+					"host": [
+						"api",
+						"appmonsta",
+						"com"
+					],
+					"path": [
+						"v1",
+						"stores",
+						"android",
+						"details.json"
+					],
+					"query": [
+						{
+							"key": "date",
+							"value": "2020-06-01"
+						},
+						{
+							"key": "country",
+							"value": "US"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Mitchell - All ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/api/mitchell/getAllID",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"mitchell",
+						"getAllID"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Mitchell - Show App Detail",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "3a56b663-a985-4a7f-80f9-b019a3d63210",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "76940c2d-5d69-4be2-9b5b-7dd2bc56aae1",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"KTU IF lecture schedule\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response should have publisher name MIK apps\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.publisher_name).to.eql(\"MIK apps\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-auth-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1pa2UuY29tIiwibGV2ZWwiOjEsImlhdCI6MTU5MDY0ODQ3NCwiZXhwIjoxNTkwNjUyMDc0fQ.hkV6lL6QGfnoG_GePY8uWnRbECy44CZExN1dSKSl4XM",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "app_id",
+							"value": "com.ktucalender",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:3000/api/mitchell/app?app_id=com.ktucalender",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"mitchell",
+						"app"
+					],
+					"query": [
+						{
+							"key": "app_id",
+							"value": "com.ktucalender"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Mitchell - All App Detail",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/api/mitchell/getAllAppDetail",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"mitchell",
+						"getAllAppDetail"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Mitchell - Show Wishlist",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "1c73f970-786d-4322-8028-e4f2930d109d",
+						"exec": [
+							"data = pm.environment.get(\"get_wishlist\");\r",
+							"if (!data || data.length <= 0) {\r",
+							"    data = [\r",
+							"        {\r",
+							"            \"get_wishlist_user_key\": \"user1\",\r",
+							"            \"get_wishlist_app_id\": \"com.ktucalender\",\r",
+							"            \"get_wishlist_status_code\": 200,\r",
+							"            \"get_wishlist_body\": {\r",
+							"                \"value\": []\r",
+							"            }\r",
+							"        },\r",
+							"        {\r",
+							"            \"get_wishlist_user_key\": \"unknown\",\r",
+							"            \"get_wishlist_app_id\": \"com.ktucalender\",\r",
+							"            \"get_wishlist_status_code\": 400,\r",
+							"            \"get_wishlist_body\": {\r",
+							"                \"message\": \"User belum terdaftar\"\r",
+							"            }\r",
+							"        },\r",
+							"        {\r",
+							"            \"get_wishlist_user_key\": \"user1\",\r",
+							"            \"get_wishlist_app_id\": \"com.ktucalende\",\r",
+							"            \"get_wishlist_status_code\": 400,\r",
+							"            \"get_wishlist_body\": {\r",
+							"                \"message\": \"Aplikasi tidak ditemukan\"\r",
+							"            }\r",
+							"        }\r",
+							"    ]\r",
+							"}\r",
+							"\r",
+							"let currentData = data.shift();\r",
+							"pm.environment.set(\"get_wishlist_user_key\", currentData[\"get_wishlist_user_key\"]);\r",
+							"pm.environment.set(\"get_wishlist_app_id\", currentData[\"get_wishlist_app_id\"]);\r",
+							"pm.environment.set(\"get_wishlist_status_code\", currentData[\"get_wishlist_status_code\"]);\r",
+							"pm.environment.set(\"get_wishlist_body\", currentData[\"get_wishlist_body\"]);\r",
+							"pm.environment.set(\"get_wishlist\", data);"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "76e2630a-e783-4c32-a13f-c4acd8627bce",
+						"exec": [
+							"data = pm.environment.get(\"get_wishlist\");\r",
+							"flag = false;\r",
+							"\r",
+							"if (data && data.length > 0) {\r",
+							"    postman.setNextRequest(\"- Get Wishlist\");\r",
+							"} else {\r",
+							"    flag = true;\r",
+							"}\r",
+							"\r",
+							"pm.test(\"Status code is correct\", function () {\r",
+							"    pm.response.to.have.status(pm.variables.get(\"get_wishlist_status_code\"));\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Returned data is correct\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.eql(pm.variables.get(\"get_wishlist_body\"));\r",
+							"});\r",
+							"\r",
+							"if (flag) {\r",
+							"    pm.environment.unset(\"get_wishlist\");\r",
+							"    pm.environment.unset(\"get_wishlist_app_id\");\r",
+							"    pm.environment.unset(\"get_wishlist_api_key\");\r",
+							"    pm.environment.unset(\"get_wishlist_status_code\");\r",
+							"    pm.environment.unset(\"get_wishlist_body\");\r",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/api/mitchell/wishlist?app_id={{get_wishlist_app_id}}&user_key={{get_wishlist_user_key}}",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"mitchell",
+						"wishlist"
+					],
+					"query": [
+						{
+							"key": "app_id",
+							"value": "{{get_wishlist_app_id}}"
+						},
+						{
+							"key": "user_key",
+							"value": "{{get_wishlist_user_key}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Mitchell - Add Wishlist",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "3cd373f2-0ef8-4e51-b378-f674d5592255",
+						"exec": [
+							"data = pm.environment.get(\"post_wishlist\");\r",
+							"if (!data || data.length <= 0) {\r",
+							"    data = [\r",
+							"        {\r",
+							"            \"post_wishlist_user_key\": \"user1\",\r",
+							"            \"post_wishlist_app_id\": \"com.ktucalender\",\r",
+							"            \"post_wishlist_status_code\": 200,\r",
+							"            \"post_wishlist_body\": {\r",
+							"                \"message\": \"app berhasil ditambahkan ke wishlist\"\r",
+							"            }\r",
+							"        },\r",
+							"        {\r",
+							"            \"post_wishlist_user_key\": \"unknown\",\r",
+							"            \"post_wishlist_app_id\": \"com.ktucalender\",\r",
+							"            \"post_wishlist_status_code\": 400,\r",
+							"            \"post_wishlist_body\": {\r",
+							"                \"message\": \"User belum terdaftar\"\r",
+							"            }\r",
+							"        },\r",
+							"        {\r",
+							"            \"post_wishlist_user_key\": \"user1\",\r",
+							"            \"post_wishlist_app_id\": \"com.ktucalende\",\r",
+							"            \"post_wishlist_status_code\": 400,\r",
+							"            \"post_wishlist_body\": {\r",
+							"                \"message\": \"Aplikasi tidak ditemukan\"\r",
+							"            }\r",
+							"        }\r",
+							"    ]\r",
+							"}\r",
+							"\r",
+							"let currentData = data.shift();\r",
+							"pm.environment.set(\"post_wishlist_user_key\", currentData[\"post_wishlist_user_key\"]);\r",
+							"pm.environment.set(\"post_wishlist_app_id\", currentData[\"post_wishlist_app_id\"]);\r",
+							"pm.environment.set(\"post_wishlist_status_code\", currentData[\"post_wishlist_status_code\"]);\r",
+							"pm.environment.set(\"post_wishlist_body\", currentData[\"post_wishlist_body\"]);\r",
+							"pm.environment.set(\"post_wishlist\", data);"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "2098a0a2-aa6a-4734-891d-f6c767411097",
+						"exec": [
+							"data = pm.environment.get(\"post_wishlist\");\r",
+							"flag = false;\r",
+							"\r",
+							"if (data && data.length > 0) {\r",
+							"    postman.setNextRequest(\"- Add Wishlist\");\r",
+							"} else {\r",
+							"    flag = true;\r",
+							"}\r",
+							"\r",
+							"pm.test(\"Status code is correct\", function () {\r",
+							"    pm.response.to.have.status(pm.variables.get(\"post_wishlist_status_code\"));\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Returned data is correct\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.eql(pm.variables.get(\"post_wishlist_body\"));\r",
+							"});\r",
+							"\r",
+							"if (flag) {\r",
+							"    pm.environment.unset(\"post_wishlist\");\r",
+							"    pm.environment.unset(\"post_wishlist_app_id\");\r",
+							"    pm.environment.unset(\"post_wishlist_api_key\");\r",
+							"    pm.environment.unset(\"post_wishlist_status_code\");\r",
+							"    pm.environment.unset(\"post_wishlist_body\");\r",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "app_id",
+							"value": "{{post_wishlist_app_id}}",
+							"type": "text"
+						},
+						{
+							"key": "user_key",
+							"value": "{{post_wishlist_user_key}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:3000/api/mitchell/addWishlist",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"mitchell",
+						"addWishlist"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Mitchell - Remove Wishlist",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "8b57725b-4af1-4642-a98c-e9c27fabe3a0",
+						"exec": [
+							"data = pm.environment.get(\"del_wishlist\");\r",
+							"if (!data || data.length <= 0) {\r",
+							"    data = [\r",
+							"        {\r",
+							"            \"del_wishlist_user_key\": \"user1\",\r",
+							"            \"del_wishlist_app_id\": \"com.ktucalender\",\r",
+							"            \"del_wishlist_status_code\": 200,\r",
+							"            \"del_wishlist_body\": {\r",
+							"                \"message\": \"app berhasil dibuang dari wishlist\"\r",
+							"            }\r",
+							"        },\r",
+							"        {\r",
+							"            \"del_wishlist_user_key\": \"unknown\",\r",
+							"            \"del_wishlist_app_id\": \"com.ktucalender\",\r",
+							"            \"del_wishlist_status_code\": 400,\r",
+							"            \"del_wishlist_body\": {\r",
+							"                \"message\": \"User belum terdaftar\"\r",
+							"            }\r",
+							"        },\r",
+							"        {\r",
+							"            \"del_wishlist_user_key\": \"user1\",\r",
+							"            \"del_wishlist_app_id\": \"com.ktucalende\",\r",
+							"            \"del_wishlist_status_code\": 400,\r",
+							"            \"del_wishlist_body\": {\r",
+							"                \"message\": \"Aplikasi tidak ditemukan\"\r",
+							"            }\r",
+							"        }\r",
+							"    ]\r",
+							"}\r",
+							"\r",
+							"let currentData = data.shift();\r",
+							"pm.environment.set(\"del_wishlist_user_key\", currentData[\"del_wishlist_user_key\"]);\r",
+							"pm.environment.set(\"del_wishlist_app_id\", currentData[\"del_wishlist_app_id\"]);\r",
+							"pm.environment.set(\"del_wishlist_status_code\", currentData[\"del_wishlist_status_code\"]);\r",
+							"pm.environment.set(\"del_wishlist_body\", currentData[\"del_wishlist_body\"]);\r",
+							"pm.environment.set(\"del_wishlist\", data);"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "af715438-0b11-437b-92f6-6fb8cb5d6b1e",
+						"exec": [
+							"data = pm.environment.get(\"del_wishlist\");\r",
+							"flag = false;\r",
+							"\r",
+							"if (data && data.length > 0) {\r",
+							"    postman.setNextRequest(\"- Remove Wishlist\");\r",
+							"} else {\r",
+							"    flag = true;\r",
+							"}\r",
+							"\r",
+							"pm.test(\"Status code is correct\", function () {\r",
+							"    pm.response.to.have.status(pm.variables.get(\"del_wishlist_status_code\"));\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Returned data is correct\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.eql(pm.variables.get(\"del_wishlist_body\"));\r",
+							"});\r",
+							"\r",
+							"if (flag) {\r",
+							"    pm.environment.unset(\"del_wishlist\");\r",
+							"    pm.environment.unset(\"del_wishlist_app_id\");\r",
+							"    pm.environment.unset(\"del_wishlist_api_key\");\r",
+							"    pm.environment.unset(\"del_wishlist_status_code\");\r",
+							"    pm.environment.unset(\"del_wishlist_body\");\r",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "app_id",
+							"value": "{{del_wishlist_app_id}}",
+							"type": "text"
+						},
+						{
+							"key": "user_key",
+							"value": "{{del_wishlist_user_key}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:3000/api/mitchell/removeWishlist",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"mitchell",
+						"removeWishlist"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

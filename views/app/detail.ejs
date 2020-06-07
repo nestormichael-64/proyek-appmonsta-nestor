@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= data.app_name %></title>
+</head>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<body>
+  <!--Belum pengecheckan ada icon ato tidak-->
+  <img style="height: 150px; width: 150px; float:left" src=<%= data.icon_url %>>
+
+  <h1><%= data.app_name %></h1>
+  <%= data.publisher_name %>
+
+  <% if (data.genres.length == 1) { %>
+    <!--alternatif 1: kalau cuman ada 1 genre-->
+    <%= data.genre %>
+  <% } else { %>
+    <!--alternatif 2: kalau ada banyak genre-->
+    <% data.genres.forEach( function(genre){ %>
+      <% genre %>
+    <% }); %>
+  <% } %>
+
+  <!--Belum digambar-->
+  <%= data.all_rating %>
+  <%= data.all_rating_count %>
+
+  <br>
+  <% if (data.content_rating == "Everyone") { %>
+    <%= "3+" %>
+  <% } %>
+  
+  <br>
+  <button type="button" class="btn btn-light text-success" id="btnWishlist">Add to Wishlist</a>
+  <button type="button" class="btn btn-success">Download</button>
+
+  <div style="clear: both;" id="test">
+  
+  </div>
+
+  <input type="hidden" id="app_id" value=<%= data.id %>>
+</body>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+  $(document).ready(function(){
+    let params = {"app_id": $("#app_id").val()};
+    let statusWishlist = false;
+    $.ajax({
+      url: "http://localhost:3000/lob/api/getStatusWishlist",
+      method: "GET",
+      data: params,
+      success: function (data) {
+        if (data.value.length > 0) {
+          $("#btnWishlist").html("Remove from Wishlist");
+          statusWishlist = true;
+        }
+      }
+    });
+
+    $("#btnWishlist").click(function() {
+      if (statusWishlist) {
+        $.ajax({
+          url: "http://localhost:3000/lob/api/removeWishlist",
+          method: "DELETE",
+          data: params,
+          success: function (data) {
+            if (data.status == 200) {
+              $("#btnWishlist").html("Add to Wishlist");
+              statusWishlist = false;
+            } else alert(data.message);
+          }
+        });
+      } else {
+        $.ajax({
+          url: "http://localhost:3000/lob/api/addWishlist",
+          method: "POST",
+          data: params,
+          success: function (data) {
+            if (data.status == 200) {
+              $("#btnWishlist").html("Remove from Wishlist");
+              statusWishlist = true;
+            } else alert(data.message);
+          }
+        });
+      }
+    });
+  });
+</script>
+</html>

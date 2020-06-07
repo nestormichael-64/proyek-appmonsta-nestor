@@ -1,0 +1,6 @@
+localhost:3000/api/getUser/:kodeuser
+const a = req.params.kodeuser
+
+localhost:3000/api/getUser?kodeuser={kode}&data=data1
+const a = req.query.kodeuser
+const b = req.query.data
